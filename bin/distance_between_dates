@@ -1,0 +1,159 @@
+#!/usr/bin/env ruby
+
+
+require 'date'
+
+class Month
+  include Comparable
+
+  LeapYearMonthDays	=	[31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  CommonYearMonthDays	=	[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  attr_accessor :day, :month, :year
+
+  def initialize day, month, year
+    self.day   = day
+    self.month = month
+    self.year  = year
+  end
+
+  def to_i 
+    if index = names.index( month )
+      return ( index - 1 ) % 13
+    else
+      return 0
+    end
+  end
+
+  def names 
+    [ Date::MONTHNAMES, Date::ABBR_MONTHNAMES ].flatten
+  end
+
+  def days_left_in_month
+    CommonYearMonthDays[self.to_i] - self.day
+  end
+
+  def days_in_months_between other
+    months_between = CommonYearMonthDays[other.to_i+1..self.to_i-1]
+    months_between.inject( 0 ) do |memo, nxt|
+      memo += nxt
+    end
+  end
+
+#  def month= m
+#    @month = m
+#    class << @month
+#      def to_i 
+#        self.index
+#      end
+#    end
+#    @month
+#  end
+
+  def <=> o 
+    if o.year == self.year
+      if o.month == self.month 
+        if self.day == o.day
+          return 0
+        else
+          self.day <=> o.day
+        end
+      else
+        self.month <=> o.month
+      end
+    else
+      self.year <=> o.year
+    end
+  end
+
+  def eql? other 
+#    puts "from #{self.inspect},
+#  to #{other.inspect}"
+    self.year == other.year && self.month == other.month
+  end
+
+  def distance_between? other
+    self.to_i - other.to_i
+  end
+
+  def - other 
+    if self.eql? other
+      diff = other.day - self.day
+    else
+      if self.distance_between?( other ) < 2
+        diff = other.days_left_in_month + self.day
+      else
+        puts self.days_left_in_month, self.days_in_months_between(other), other.day
+        diff = self.days_left_in_month + self.days_in_months_between(other) + other.day
+      end
+    end
+    diff
+  end
+
+  def now
+    self.class.now
+  end
+
+  class << self
+    def parse argv
+      while arg = argv.shift
+        if arg == 'from'
+          from_month = extract_values argv
+        elsif arg == 'to'
+          to_month = extract_values argv
+        end
+      end
+
+
+    puts "from #{from_month.year} #{from_month.month} #{from_month.to_i} #{from_month.day} 
+  to #{to_month.year} #{to_month.month} #{to_month.to_i} #{to_month.day}
+  years #{from_month.year > to_month.year}
+  month #{from_month.to_i > to_month.to_i}
+  day   #{from_month.day > to_month.day}
+  #{from_month > to_month}"
+      if from_month > to_month
+        from = Month.new( to_month.day,   to_month.month,   to_month.year   )
+        to   = Month.new( from_month.day, from_month.month, from_month.year )
+      else
+        from = from_month
+        to   = to_month
+      end
+    puts "from #{from.inspect},
+  to #{to.inspect}"
+      return [from, to]
+    end
+
+    def extract_year_values year, args 
+      if year == 'from' or year == 'to'
+        args.unshift year
+        year = now.year
+      end
+      year ||= now.year
+    end
+
+    def extract_values args
+        day   = args.shift
+        if day[0,1] == '"'
+          day, month, year = day.split ' '
+          year = extract_year_values year, args
+        else
+          month = args.shift
+          year  = args.shift
+          year = extract_year_values year, args
+        end
+        day = day.to_i
+        new day, month, year
+    end
+
+    def now
+      Time.now
+    end
+  end
+end
+
+LeapYearMonthDays	=	[31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+CommonYearMonthDays	=	[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+from, to = Month.parse ARGV
+#puts from.inspect, to.inspect
+
+puts "#{diff = from - to} day" << (diff > 1 ? 's' : '')
