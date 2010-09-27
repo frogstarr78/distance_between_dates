@@ -53,6 +53,13 @@ describe "DistanceBetweenDates" do
       @month.should be_greater_than( DistanceBetweenDates::Year.new 2009 )
     end
 
+    it "calculates difference to another month" do
+      @month = DistanceBetweenDates::Month.new 'Jan', 2010
+      @other_month = DistanceBetweenDates::Month.new 'Mar', 2010
+      ( @month -  @other_month ).should be( -2 )
+      ( @other_month -  @month ).should be( 2 )
+    end
+
     it "has month names" do 
       DistanceBetweenDates::Month.names.include? 'january'
       DistanceBetweenDates::Month.names.include? 'february'
