@@ -96,4 +96,11 @@ describe "Day" do
     @day = Day.new 13, 'Dec', 2010
     lambda { @day <=> 1 }.should raise_error(RuntimeError)
   end
+
+  it "calculates difference to another month" do
+    @day = Day.new 26, 'sep', 2010
+    @other_day = Day.new 30, 'sep', 2010
+    (@day - @other_day).should be -4
+    (@other_day - @day).should be 4
+  end
 end

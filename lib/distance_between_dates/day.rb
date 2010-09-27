@@ -52,13 +52,7 @@ module DistanceBetweenDates
     end
 
     def - other
-      if self.month == other.month
-        swap_for_greater other do |lesser, greater|
-          return greater.day - lesser.day
-        end
-      else
-
-      end
+      self.day - other.day
     end
   end
 end

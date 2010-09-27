@@ -44,5 +44,9 @@ module DistanceBetweenDates
       end
       days_in_months 
     end
+
+    def - other
+      self.year - other.year
+    end
   end
 end

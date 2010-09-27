@@ -156,7 +156,6 @@ describe "Month" do
     @month.should be_greater_than(Date.new 1999, 12)
   end
 
-
   it "doesn't compare to something it can't compare to" do
     @month = Month.new 'Jan', 2010
     lambda { @month <=> 2 }.should raise_error(RuntimeError)

@@ -14,6 +14,12 @@ describe "Year" do
     @year.leap_year?.should be_true
   end
 
+  it "calculates difference to another year" do
+    @other_year = Year.new 2013
+    ( @year -  @other_year ).should be( -3 )
+    ( @other_year -  @year ).should be( 3 )
+  end
+
   it "compares correctly to another year" do
     @year.should be_less_than( Year.new 2011 )
     @year.should be_greater_than( Year.new 2009 )
