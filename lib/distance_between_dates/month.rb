@@ -4,6 +4,7 @@ module DistanceBetweenDates
 
     attr_accessor :month, :year
     attr_reader :days_in_month
+    alias :name :month
 
     def initialize month, year
       @month = month
@@ -44,6 +45,7 @@ module DistanceBetweenDates
           self.year <=> o.year
         end
       when Day
+        self <=> o.month
       end
     end
 

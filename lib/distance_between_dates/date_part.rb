@@ -18,6 +18,12 @@ module DistanceBetweenDates
       end
     end
 
+    def self.delegate_to obj, methods
+      methods.each do |method|
+        delegate method, obj
+      end
+    end
+
     private 
       def now
         self.class.now
