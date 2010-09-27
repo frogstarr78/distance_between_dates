@@ -4,10 +4,6 @@ require 'distance_between_dates'
 require 'spec'
 require 'spec/autorun'
 
-Spec::Runner.configure do |config|
- config.mock_with :mocha  
-end
-
 module DistanceBetweenDates
   class DatePart
     def less_than? other
@@ -30,4 +26,9 @@ module DistanceBetweenDates
       "<#{self.class}#{attributes*' '}>"
     end
   end
+end
+
+Spec::Runner.configure do |config|
+ config.mock_with :mocha  
+ include DistanceBetweenDates
 end
