@@ -34,6 +34,20 @@ module DistanceBetweenDates
         else
           self.year <=> o.year
         end
+      else
+        if o.respond_to? :day
+          if self.year == o
+            if self.month == o
+              self.day <=> o.day
+            else
+              self.month <=> o
+            end
+          else
+            self.year <=> o
+          end
+        else
+          raise "Unable to compare class '#{o.class}' that doesn't have :day method."
+        end
       end
     end
 

@@ -38,4 +38,25 @@ describe "Year" do
 #    @year = Year.new 2008
 #    @year.days_in_months.should be_eql([nil, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31])
 #  end
+
+  it "compares correctly with something that quacks like a year" do
+    require 'date'
+    require 'time'
+
+    @year.should be_less_than(Date.new 2011)
+    @year.should be_greater_than(Date.new 2009)
+    @year.should be_eql(Date.new 2010)
+
+    @year.should be_less_than(DateTime.new 2011)
+    @year.should be_greater_than(DateTime.new 2009)
+    @year.should be_eql(DateTime.new 2010)
+
+    @year.should be_less_than(Time.parse '2011-1-1')
+    @year.should be_greater_than(Time.parse '2009-12-31')
+    @year.should be_eql(Time.parse '2010-12-31')
+  end
+
+  it "doesn't compare to something it can't compare to" do
+    lambda { @year <=> 2010 }.should raise_error(RuntimeError)
+  end
 end

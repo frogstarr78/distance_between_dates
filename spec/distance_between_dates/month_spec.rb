@@ -50,6 +50,12 @@ describe "Month" do
     @other_month.should be_greater_than @month
 
     @month.should be_eql( Month.new 'Jan', 2010 )
+
+    @month = Month.new 'dec', 2000
+    @month.should be_less_than(Month.new 'January', 2001)
+
+    @month = Month.new 'jan', 2000
+    @month.should be_greater_than(Month.new 'dec', 1999)
   end
 
   it "compares to a Day" do
@@ -120,5 +126,39 @@ describe "Month" do
     Month.names.include? 'Oct'
     Month.names.include? 'Nov'
     Month.names.include? 'Dec'
+  end
+
+  it "compares correctly with something that quacks like a month" do
+    require 'date'
+    require 'time'
+
+    @month = Month.new 'september', 2010
+    @month.should be_less_than(Date.new 2010, 10)
+    @month.should be_greater_than(Date.new 2010, 8)
+    @month.should be_eql(Date.new 2010, 9)
+
+    @month.should be_less_than(DateTime.new 2010, 10)
+    @month.should be_greater_than(DateTime.new 2010, 8)
+    @month.should be_eql(DateTime.new 2010, 9)
+
+    @month.should be_less_than(Time.parse '2010-10-1')
+    @month.should be_greater_than(Time.parse '2010-8-31')
+    @month.should be_eql(Time.parse '2010-9-30')
+
+    @month.should be_less_than(Date.new 2011, 9)
+    @month.should be_greater_than(DateTime.new 2009, 9)
+    @month.should be_eql(Time.parse '2010-9-1')
+
+    @month = Month.new 'dec', 2000
+    @month.should be_less_than(Date.new 2001, 1)
+
+    @month = Month.new 'jan', 2000
+    @month.should be_greater_than(Date.new 1999, 12)
+  end
+
+
+  it "doesn't compare to something it can't compare to" do
+    @month = Month.new 'Jan', 2010
+    lambda { @month <=> 2 }.should raise_error(RuntimeError)
   end
 end
