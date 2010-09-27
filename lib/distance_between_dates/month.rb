@@ -47,23 +47,8 @@ module DistanceBetweenDates
       end
     end
 
-    def distance_between? other
-      swap_for_greater other do |lesser, greater|
-        greater.to_i - lesser.to_i
-      end
-    end
-
     def - other 
-      if self.eql? other
-        diff = other.day - self.day
-      else
-        if self.distance_between?( other ) == 1
-          diff = self.days_left_in_month + other.day
-        else
-          diff = self.days_left_in_month + self.days_in_months_between(other) + other.day
-        end
-      end
-      diff
+      self.to_i - other.to_i
     end
 
     def Month.names 
