@@ -107,5 +107,7 @@ describe "Day" do
   it "errors if the day is an invalid day" do
     lambda { Day.new 0, 'jan', 2010 }.should raise_error RuntimeError
     lambda { Day.new 32, 'dec', 2010 }.should raise_error RuntimeError
+    lambda { Day.new '31', 'dec', 2010 }.should_not raise_error RuntimeError
+    lambda { Day.new 3.1, 'dec', 2010 }.should_not raise_error RuntimeError
   end
 end

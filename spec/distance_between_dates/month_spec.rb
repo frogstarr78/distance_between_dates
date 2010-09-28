@@ -171,5 +171,8 @@ describe "Month" do
     lambda { Month.new 0, 2010 }.should raise_error RuntimeError
     lambda { Month.new 13, 2010 }.should raise_error RuntimeError
     lambda { Month.new 'sun', 2010 }.should raise_error RuntimeError
+    lambda { Month.new '4', 2010 }.should_not raise_error RuntimeError
+    lambda { Month.new '4.0', 2010 }.should raise_error RuntimeError
+    lambda { Month.new 4.0, 2010 }.should raise_error RuntimeError
   end
 end

@@ -13,8 +13,15 @@ module DistanceBetweenDates
         end
         @month = self.class.names[month]
       else
-        raise "Invalid month '#{month}'." unless self.class.names.include? month
-        @month = month
+        if self.class.names.include? month
+          @month = month
+        else
+          if month =~ /^\d+$/
+            @month = self.class.names[month.to_i]
+          else
+            raise "Invalid month '#{month}'."
+          end
+        end
       end
       @year  = Year.new year
       @days_in_month = self.year.days_in_months.find {|dim| !dim.nil? and dim.month == self.to_i }.days

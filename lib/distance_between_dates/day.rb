@@ -6,7 +6,7 @@ module DistanceBetweenDates
     delegate_to :month, [ :days_in_month, :days_in_months_between, :year ]
 
     def initialize day, month, year
-      @day   = day
+      @day   = day.to_i
       @month = Month.new month, year
 
       if self.day <= 0 or self.day > self.days_in_month
