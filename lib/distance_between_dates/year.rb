@@ -8,6 +8,8 @@ module DistanceBetweenDates
     alias :to_i :year
 
     def initialize year
+      year = year.to_i
+      raise "Invalid year '#{year}'" if year == 0
       @year = year
     end
 

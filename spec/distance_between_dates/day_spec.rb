@@ -103,4 +103,9 @@ describe "Day" do
     (@day - @other_day).should be -4
     (@other_day - @day).should be 4
   end
+
+  it "errors if the day is an invalid day" do
+    lambda { Day.new 0, 'jan', 2010 }.should raise_error RuntimeError
+    lambda { Day.new 32, 'dec', 2010 }.should raise_error RuntimeError
+  end
 end

@@ -10,7 +10,6 @@ module DistanceBetweenDates
           end
         end
 
-
       puts "from #{from_month.year} #{from_month.month} #{from_month.to_i} #{from_month.day} 
     to #{to_month.year} #{to_month.month} #{to_month.to_i} #{to_month.day}
     years #{from_month.year > to_month.year}

@@ -1,6 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Month" do
+  it "can create month with an integer month" do
+    lambda { @month = Month.new 1, 2010 }.should_not raise_error RuntimeError
+    @month.name.to_s.should be_eql 'January'
+    @month.days_in_month.should be_eql 31
+  end
+
   it "has correct days in month" do
     @month = Month.new 'sep', 2010
     @month.days_in_month.should be(30)
@@ -159,5 +165,11 @@ describe "Month" do
   it "doesn't compare to something it can't compare to" do
     @month = Month.new 'Jan', 2010
     lambda { @month <=> 2 }.should raise_error(RuntimeError)
+  end
+
+  it "errors if the month is invalid" do
+    lambda { Month.new 0, 2010 }.should raise_error RuntimeError
+    lambda { Month.new 13, 2010 }.should raise_error RuntimeError
+    lambda { Month.new 'sun', 2010 }.should raise_error RuntimeError
   end
 end

@@ -8,6 +8,10 @@ module DistanceBetweenDates
     def initialize day, month, year
       @day   = day
       @month = Month.new month, year
+
+      if self.day <= 0 or self.day > self.days_in_month
+        raise "Invalid day '#@day' for month '#{self.month.name}'."
+      end
     end
 
     def year= year

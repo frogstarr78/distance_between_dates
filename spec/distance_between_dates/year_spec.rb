@@ -65,4 +65,11 @@ describe "Year" do
   it "doesn't compare to something it can't compare to" do
     lambda { @year <=> 2010 }.should raise_error(RuntimeError)
   end
+
+  it "errors if the year is invalid" do
+    lambda { Year.new 0 }.should raise_error RuntimeError
+    lambda { Year.new "abc" }.should raise_error RuntimeError
+    lambda { Year.new "1991" }.should_not raise_error RuntimeError
+    lambda { Year.new 199.1 }.should_not raise_error RuntimeError
+  end
 end

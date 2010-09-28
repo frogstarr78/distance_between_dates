@@ -7,7 +7,15 @@ module DistanceBetweenDates
     alias :name :month
 
     def initialize month, year
-      @month = month
+      if month.is_a? Fixnum
+        if month <= 0 or month > 12
+          raise "Invalid month '#{month}'."
+        end
+        @month = self.class.names[month]
+      else
+        raise "Invalid month '#{month}'." unless self.class.names.include? month
+        @month = month
+      end
       @year  = Year.new year
       @days_in_month = self.year.days_in_months.find {|dim| !dim.nil? and dim.month == self.to_i }.days
     end
@@ -64,10 +72,10 @@ module DistanceBetweenDates
     end
 
     def Month.names 
-      months = [nil] | %w(january february march april may june july august september october november december)
-      capitalized_months = months.collect{|mo| mo.capitalize unless mo.nil? }
-      abbreviated_months = [ months, capitalized_months ].flatten.collect{|mo| mo[0,3] unless mo.nil? }
-      [ months, capitalized_months, abbreviated_months ].flatten
+      months = [nil] | %w(January February March April May June July August September October November December)
+      downcased_months = months.collect{|mo| mo.downcase unless mo.nil? }
+      abbreviated_months = [ months, downcased_months ].flatten.collect{|mo| mo[0,3] unless mo.nil? }
+      [ months, downcased_months, abbreviated_months ].flatten
     end
   end
 end
