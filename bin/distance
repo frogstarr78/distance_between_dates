@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+
+require 'date'
+require 'distance_between_dates'
+
+from, to = Month.parse ARGV
+#puts from.inspect, to.inspect
+
+puts "#{diff = from - to} day" << (diff > 1 ? 's' : '')
