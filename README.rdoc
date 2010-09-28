@@ -1,6 +1,36 @@
 = distance_between_dates
 
-Description goes here.
+distance_between_dates from 2 Jan 2010 to 3 Jan 2010 in days                       # => -1 days
+distance_between_dates from 2 Jan 2010 to 3 Jan 2010 in positive days              # => 1 days
+distance_between_dates from 2 Jan 2010 to 3 Mar 2010 in positive days              # => 49 days
+distance_between_dates from 2 Jan 2010 to 3 Mar 2010 in positive months,days       # => 1 month, 21 days 
+distance_between_dates from 2 Jan 2010 to 3 Mar 2010 in positive days,months       # => 32 days, 1 month
+distance_between_dates from 2 Jan 2010 to 3 Mar 2010 in positive days,months,years # => 32 days, 1 month, 0 years
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in positive days,months,years # => 30 days, 9 months, 1 year
+distance_between_dates from 2 Jan 2010 to 3 Mar 2013 in positive days,months,years # => 32 days, 1 month, 3 years
+distance_between_dates from 2 Jan 2000 to 3 Mar 2010 in days,months,years          # => 21 days, 1 month, 1 year
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in days,months,years          # => -30 days, -9 months, -1 year
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in format days/months/years   # => -30/-9/-1
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in days                       # => -670 days
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in months                     # => -22 months
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in full months                # => -20 months
+distance_between_dates from 2 Jan 2012 to 3 Mar 2010 in years                      # => -2 years
+distance_between_dates from 2 Jan 2010 to 3 Mar 2010 in weeks                      # => -9 weeks
+distance_between_dates from 2 Jan 2000 to 3 Mar 2010 in decades                    # => -1 decades
+distance_between_dates from 2 Jan 2000 to 3 Mar 2010 in centuries                  # => 0 centuries
+distance_between_dates from 2 Jan 2000 to 3 Mar 2100 in centuries                  # => -1 centuries
+distance_between_dates from 2 Jan 2100 to 3 Mar 1100 in millenia                   # => 1 millenia
+distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in epoch                # => ? epoch
+distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in eon                  # => ? eon
+distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in age                  # => ? age
+distance_between_dates from 2 Jan 2000 to 3 Mar 2023 in full generations           # => 1 generation ?
+distance_between_dates from 2 Jan 2000 to 3 Mar 2080 in full life time             # => 1 life time ?
+distance between 2 Jan 2000 and 2 Feb 2000 in days                                 # => 31 days
+distance between 2000 and 2001 in days                                             # => 366 days
+distance between Jan 2000 and Feb 2001 in days                                     # => 397 days
+distance between 1 2000 and 2 2001 in days                                         # => 397 days
+distance between 1 1 2000 and 1 2 2001 in days                                     # => 397 days
+
 
 == Note on Patches/Pull Requests
  
