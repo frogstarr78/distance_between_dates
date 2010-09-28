@@ -72,4 +72,13 @@ describe "Year" do
     lambda { Year.new "1991" }.should_not raise_error RuntimeError
     lambda { Year.new 199.1 }.should_not raise_error RuntimeError
   end
+
+  it "correctly converts into months" do
+    @year.to_months.should be_eql 12
+  end
+
+  it "correctly converts to days" do
+    @year.to_days.should be_eql 365
+    Year.new(2008).to_days.should be_eql 366
+  end
 end

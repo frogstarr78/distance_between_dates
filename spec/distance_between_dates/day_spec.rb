@@ -110,4 +110,7 @@ describe "Day" do
     lambda { Day.new '31', 'dec', 2010 }.should_not raise_error RuntimeError
     lambda { Day.new 3.1, 'dec', 2010 }.should_not raise_error RuntimeError
   end
+
+  it "correctly converts to_month"
+  it "correctly converts to_year"
 end

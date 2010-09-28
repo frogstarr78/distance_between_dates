@@ -50,5 +50,13 @@ module DistanceBetweenDates
     def - other
       self.year - other.year
     end
+
+    def to_months
+      12
+    end
+
+    def to_days 
+      leap_year? ? 366 : 365
+    end
   end
 end

@@ -3,7 +3,7 @@ module DistanceBetweenDates
     include Comparable
 
     attr_accessor :month, :year
-    attr_reader :days_in_month
+    attr_reader :to_days
     alias :name :month
 
     def initialize month, year
@@ -24,7 +24,7 @@ module DistanceBetweenDates
         end
       end
       @year  = Year.new year
-      @days_in_month = self.year.days_in_months.find {|dim| !dim.nil? and dim.month == self.to_i }.days
+      @to_days = self.year.days_in_months.find {|dim| !dim.nil? and dim.month == self.to_i }.days
     end
 
     def to_i

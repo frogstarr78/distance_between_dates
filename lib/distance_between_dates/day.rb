@@ -3,7 +3,7 @@ module DistanceBetweenDates
     include Comparable
     attr_accessor :day, :month, :year
     alias :to_i :day
-    delegate_to :month, [ :days_in_month, :days_in_months_between, :year ]
+    delegate_to :month, [ :days_in_months_between, :year ]
 
     def initialize day, month, year
       @day   = day.to_i
@@ -57,6 +57,10 @@ module DistanceBetweenDates
 
     def - other
       self.day - other.day
+    end
+
+    def days_in_month
+      self.month.to_days
     end
   end
 end

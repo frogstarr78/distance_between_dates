@@ -4,18 +4,18 @@ describe "Month" do
   it "can create month with an integer month" do
     lambda { @month = Month.new 1, 2010 }.should_not raise_error RuntimeError
     @month.name.to_s.should be_eql 'January'
-    @month.days_in_month.should be_eql 31
+    @month.to_days.should be_eql 31
   end
 
   it "has correct days in month" do
     @month = Month.new 'sep', 2010
-    @month.days_in_month.should be(30)
+    @month.to_days.should be(30)
 
     @month = Month.new 'Feb', 2007
-    @month.days_in_month.should be(28)
+    @month.to_days.should be(28)
 
     @month = Month.new 'Feb', 2008
-    @month.days_in_month.should be(29)
+    @month.to_days.should be(29)
   end
 
   it "has a year" do
@@ -175,4 +175,11 @@ describe "Month" do
     lambda { Month.new '4.0', 2010 }.should raise_error RuntimeError
     lambda { Month.new 4.0, 2010 }.should raise_error RuntimeError
   end
+
+  it "correctly converts to days" do
+    @month = Month.new 'Jan', 2010
+    @month.to_days.should be_eql 31
+  end
+
+  it "correctly converts to_year"
 end
