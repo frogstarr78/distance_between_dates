@@ -20,11 +20,11 @@ distance_between_dates from 2 Jan 2000 to 3 Mar 2010 in decades                 
 distance_between_dates from 2 Jan 2000 to 3 Mar 2010 in centuries                  # => 0 centuries
 distance_between_dates from 2 Jan 2000 to 3 Mar 2100 in centuries                  # => -1 centuries
 distance_between_dates from 2 Jan 2100 to 3 Mar 1100 in millenia                   # => 1 millenia
-distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in epoch                # => ? epoch
-distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in eon                  # => ? eon
-distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in age                  # => ? age
+distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in epochs               # => ? epoch
+distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in eons                 # => ? eon
+distance_between_dates from 2 Jan 2000 BC to 3 Mar 2000 AD in ages                 # => ? age
 distance_between_dates from 2 Jan 2000 to 3 Mar 2023 in full generations           # => 1 generation ?
-distance_between_dates from 2 Jan 2000 to 3 Mar 2080 in full life time             # => 1 life time ?
+distance_between_dates from 2 Jan 2000 to 3 Mar 2080 in full life times            # => 1 life time ?
 distance between 2 Jan 2000 and 2 Feb 2000 in days                                 # => 31 days
 distance between 2000 and 2001 in days                                             # => 366 days
 distance between Jan 2000 and Feb 2001 in days                                     # => 397 days
