@@ -1,6 +1,8 @@
 let SessionLoad = 1
 if &cp | set nocp | endif
 map 	 
+vmap  :call Toggle()
+nmap  :call Toggle()
 map ; :
 map Q gq
 map UU :call UnComment()
@@ -24,10 +26,11 @@ nmap gx <Plug>NetrwBrowseX
 map s :w!
 map zz 
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
-iabbr inject inject( ) do |memo, nxt|endF)bi
-iabbr each each do ||endk$i
-iabbr if if end<Up>
+imap  :call Toggle()
 iabbr def def end<Up>
+iabbr if if end<Up>
+iabbr each each do ||endk$i
+iabbr inject inject( ) do |memo, nxt|endF)bi
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set autoindent
@@ -46,7 +49,7 @@ set tags=./tags,./TAGS,tags,TAGS,~/ctags/tags,~/ctags/java.tags
 set timeoutlen=500
 set wildmenu
 set wildmode=list:longest,full
-set window=49
+set window=71
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -57,18 +60,17 @@ endif
 set shortmess=aoO
 badd +6 lib/distance_between_dates.rb
 badd +4 spec/distance_between_dates_spec.rb
-badd +11 spec/spec_helper.rb
 badd +24 lib/distance_between_dates/year.rb
 badd +1 lib/distance_between_dates/date_part.rb
 badd +54 spec/distance_between_dates/year_spec.rb
 badd +56 spec/distance_between_dates/month_spec.rb
-badd +58 lib/distance_between_dates/month.rb
+badd +20 lib/distance_between_dates/month.rb
 badd +1 lib/distance_between_dates/days_in_month.rb
 badd +59 spec/distance_between_dates/day_spec.rb
-badd +47 lib/distance_between_dates/day.rb
-badd +0 lib/distance_between_dates/parser.rb
-badd +0 spec/distance_between_dates/parse_spec.rb
-badd +0 README.rdoc
+badd +13 lib/distance_between_dates/day.rb
+badd +30 lib/distance_between_dates/parser.rb
+badd +1 spec/distance_between_dates/parse_spec.rb
+badd +10 README.rdoc
 args lib/distance_between_dates.rb spec/distance_between_dates_spec.rb
 edit README.rdoc
 set splitbelow splitright
@@ -84,11 +86,11 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 35 + 36) / 72)
-exe '2resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 2resize ' . ((&columns * 100 + 139) / 279)
-exe '3resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 3resize ' . ((&columns * 178 + 139) / 279)
+exe '1resize ' . ((&lines * 8 + 36) / 72)
+exe '2resize ' . ((&lines * 61 + 36) / 72)
+exe 'vert 2resize ' . ((&columns * 102 + 120) / 240)
+exe '3resize ' . ((&lines * 61 + 36) / 72)
+exe 'vert 3resize ' . ((&columns * 137 + 120) / 240)
 argglobal
 edit README.rdoc
 setlocal keymap=
@@ -187,12 +189,12 @@ setlocal nowinfixwidth
 set nowrap
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 32 - ((23 * winheight(0) + 17) / 35)
+let s:l = 10 - ((1 * winheight(0) + 4) / 8)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-32
-normal! 036l
+10
+normal! 0
 wincmd w
 argglobal
 edit lib/distance_between_dates/parser.rb
@@ -308,17 +310,23 @@ normal zo
 normal zo
 4
 normal zo
-16
+19
 normal zo
-17
+21
 normal zo
-16
+29
 normal zo
-24
+21
 normal zo
-26
+19
 normal zo
-24
+33
+normal zo
+34
+normal zo
+33
+normal zo
+42
 normal zo
 3
 normal zo
@@ -326,11 +334,11 @@ normal zo
 normal zo
 1
 normal zo
-let s:l = 11 - ((10 * winheight(0) + 17) / 34)
+let s:l = 22 - ((20 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
+22
 normal! 010l
 wincmd w
 argglobal
@@ -367,7 +375,7 @@ setlocal foldcolumn=3
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=1
 setlocal foldmarker={{{,}}}
 set foldmethod=syntax
 setlocal foldmethod=syntax
@@ -433,29 +441,29 @@ setlocal nowrap
 setlocal wrapmargin=0
 3
 normal zo
-5
+26
 normal zo
-8
+43
 normal zo
-16
+43
 normal zo
-29
+26
 normal zo
 3
 normal zo
-let s:l = 4 - ((1 * winheight(0) + 17) / 34)
+let s:l = 47 - ((46 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 01l
+47
+normal! 056l
 wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 35 + 36) / 72)
-exe '2resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 2resize ' . ((&columns * 100 + 139) / 279)
-exe '3resize ' . ((&lines * 34 + 36) / 72)
-exe 'vert 3resize ' . ((&columns * 178 + 139) / 279)
+3wincmd w
+exe '1resize ' . ((&lines * 8 + 36) / 72)
+exe '2resize ' . ((&lines * 61 + 36) / 72)
+exe 'vert 2resize ' . ((&columns * 102 + 120) / 240)
+exe '3resize ' . ((&lines * 61 + 36) / 72)
+exe 'vert 3resize ' . ((&columns * 137 + 120) / 240)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
