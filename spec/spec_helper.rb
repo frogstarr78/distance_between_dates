@@ -3,6 +3,8 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'distance_between_dates'
 require 'spec'
 require 'spec/autorun'
+require 'rubygems'
+require 'ruby-debug'
 
 module DistanceBetweenDates
   class DatePart
